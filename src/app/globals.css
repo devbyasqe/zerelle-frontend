@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: 0, 0%, 97%;
+  --accent: 0, 0%, 93%;
+  --muted: 0, 0%, 87%;
+  --secondary: 0, 0%, 5%;
+
+  --success: 161, 94%, 30%;
+  --destructive: 0, 72%, 43%;
+  --warning: 43, 96%, 56%;
+
+  --foreground: 0, 0%, 10%;
+  --foreground-muted: 0, 0%, 40%;
+  --foreground-secondary: 0, 0%, 90%;
+
+  --border: 0, 0%, 80%;
+}
+
+.dark {
+  --background: 0, 0%, 0%;
+  --accent: 0, 0%, 5%;
+  --muted: 0, 0%, 10%;
+  --secondary: 0, 0%, 85%;
+
+  --success: 142.1 76.2% 36.3%;
+  --destructive: 0, 70%, 44%;
+  --warning: 47.9 95.8% 53.1%;
+
+  --foreground: 0, 0%, 80%;
+  --foreground-muted: 0, 0%, 50%;
+  --foreground-secondary: 0, 0%, 10%;
+
+  --border: 0, 0%, 19%;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-*: initial;
+  --color-background: hsl(var(--background));
+  --color-accent: hsl(var(--accent));
+  --color-muted: hsl(var(--muted));
+  --color-secondary: hsl(var(--secondary));
+
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-muted: hsl(var(--foreground-muted));
+  --color-foreground-secondary: hsl(var(--foreground-secondary));
+
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-destructive: hsl(var(--destructive));
+
+  --color-border: hsl(var(--border));
+}
+
+@layer base {
+  * {
+    @apply border-border focus-visible:outline-none;
+  }
+  body {
+    @apply antialiased bg-background text-foreground;
+  }
+}
