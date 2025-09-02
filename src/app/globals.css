@@ -1,32 +1,41 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 :root {
-  --background: 0, 0%, 97%;
+  --background: 0, 0%, 99%;
   --accent: 0, 0%, 93%;
   --muted: 0, 0%, 87%;
   --secondary: 0, 0%, 5%;
 
-  --success: 161, 94%, 30%;
-  --destructive: 0, 72%, 43%;
-  --warning: 43, 96%, 56%;
+  --success: 120, 100%, 25%;
+  --destructive: 1, 79%, 45%;
+  --warning: 46, 92%, 47%;
 
   --foreground: 0, 0%, 10%;
   --foreground-muted: 0, 0%, 40%;
   --foreground-secondary: 0, 0%, 90%;
 
   --border: 0, 0%, 80%;
+
+  --black: 0, 0%, 5%;
+  --white: 0, 0%, 95%;
 }
 
 .dark {
   --background: 0, 0%, 0%;
-  --accent: 0, 0%, 5%;
-  --muted: 0, 0%, 10%;
-  --secondary: 0, 0%, 85%;
+  --accent: 0, 0%, 7%;
+  --muted: 0, 0%, 12%;
+  --secondary: 0, 0%, 90%;
 
-  --success: 142.1 76.2% 36.3%;
-  --destructive: 0, 70%, 44%;
-  --warning: 47.9 95.8% 53.1%;
+  --success: 120, 67%, 18%;
+  --destructive: 0, 78%, 34%;
+  --warning: 45, 100%, 35%;
 
   --foreground: 0, 0%, 80%;
   --foreground-muted: 0, 0%, 50%;
@@ -54,6 +63,16 @@
   --color-destructive: hsl(var(--destructive));
 
   --color-border: hsl(var(--border));
+
+  --color-black: hsl(var(--black));
+  --color-white: hsl(var(--white));
+
+  --animate-rotate-cw: rotate-cw 3s linear infinite;
+  @keyframes rotate-cw {
+    to {
+      --angle: 360deg;
+    }
+  }
 }
 
 @layer base {
@@ -61,6 +80,19 @@
     @apply border-border focus-visible:outline-none;
   }
   body {
-    @apply antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground;
   }
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+  display: none !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
