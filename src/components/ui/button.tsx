@@ -11,11 +11,13 @@ export const buttonVariants = cva(
       variant: {
         primary:
           "bg-secondary text-foreground-secondary hover:bg-secondary/80 focus-visible:bg-secondary/80 disabled:bg-secondary/80 disabled:text-foreground-muted",
+        success:
+          "bg-success text-white hover:bg-success/80 focus-visible:bg-success/80 disabled:bg-success/80 disabled:text-white/70",
         destructive:
           "bg-destructive text-white hover:bg-destructive/80 focus-visible:bg-destructive/80 disabled:bg-destructive/80 disabled:text-white/70",
         accent:
           "bg-muted text-foreground hover:bg-accent focus-visible:bg-accent disabled:bg-accent disabled:text-foreground-muted",
-        link: "text-foreground underline underline-offset-4 hover:text-foreground-muted hover:no-underline focus-visible:text-foreground-muted focus-visible:no-underline disabled:text-foreground-muted",
+        link: "text-foreground  hover:text-foreground-muted focus-visible:text-foreground-muted disabled:text-foreground-muted",
         outline:
           "border hover:bg-accent focus-visible:bg-accent disabled:bg-accent disabled:text-foreground-muted",
       },

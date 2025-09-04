@@ -8,14 +8,27 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { changePasswordSchema, TChangePasswordFormData } from "../validation";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import { authSubmit } from "@/components/backend/auth";
-import { toast } from "sonner";
-import { ArrowRotate } from "@/components/svg";
+import { UseMutateFunction } from "@tanstack/react-query";
+import { ArrowRotateIcon } from "@/components/svg";
+import { TProfileCardFormData } from "@/components/profile/profile-card";
 
-const ResetPasswordForm = ({ uid, token }: { uid: string; token: string }) => {
-  const router = useRouter();
+type TResetPasswordForm = {
+  handleCancel?: () => void;
+  isPending: boolean;
+  mutate:
+    | UseMutateFunction<
+        any,
+        Error,
+        {
+          password: string;
+          confirm_password: string;
+        },
+        unknown
+      >
+    | UseMutateFunction<any, Error, TProfileCardFormData, unknown>;
+};
+
+const ResetPasswordForm = ({ isPending, mutate,handleCancel }: TResetPasswordForm) => {
   const {
     register,
     handleSubmit,
@@ -23,20 +36,8 @@ const ResetPasswordForm = ({ uid, token }: { uid: string; token: string }) => {
     getValues,
     formState: { errors },
   } = useForm<TChangePasswordFormData>({
-    // resolver: zodResolver(changePasswordSchema),
+    resolver: zodResolver(changePasswordSchema),
     mode: "onChange",
-  });
-
-  const { isPending, mutate } = useMutation({
-    mutationFn: (data: TChangePasswordFormData) => {
-      return authSubmit("resetPassword", data, { uid, token });
-    },
-    onSuccess: () => {
-      toast.success(
-        "Password updated successfully. You can now log in with your new password."
-      );
-      router.replace("/auth/sign-in");
-    },
   });
 
   return (
@@ -67,10 +68,20 @@ const ResetPasswordForm = ({ uid, token }: { uid: string; token: string }) => {
         </div>
       ))}
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center gap-3 mt-4">
+        {handleCancel && (
+          <Button
+            hover={"scale"}
+            variant={"destructive"}
+            onClick={handleCancel}
+            disabled={isPending}
+          >
+            Cancel
+          </Button>
+        )}
         <Button type="submit" disabled={isPending} hover={"scale"}>
           Reset Password
-          {isPending && <ArrowRotate className="animate-spin" />}
+          {isPending && <ArrowRotateIcon className="animate-spin" />}
         </Button>
       </div>
     </form>

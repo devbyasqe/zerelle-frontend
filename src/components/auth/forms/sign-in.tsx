@@ -10,7 +10,7 @@ import { signInSchema, TSignInFormData } from "../validation";
 import { usePathname, useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { authSubmit } from "@/components/backend/auth";
-import { ArrowRotate } from "@/components/svg";
+import { ArrowRotateIcon } from "@/components/svg";
 import { setCookie } from "@/components/cookies";
 
 const SignInForm = () => {
@@ -48,50 +48,48 @@ const SignInForm = () => {
   });
 
   return (
-     
-      <form
-        noValidate
-        className="space-y-6 mt-10"
-        onSubmit={handleSubmit((data) => mutate(data))}
-      >
-        <div className="space-y-2">
-          <Label htmlFor="email">Email ID </Label>
-          <TextInput type="email" id="email" autoFocus {...register("email")} />
-          {errors.email && (
-            <p className="text-destructive text-sm">
-              {errors.email?.message?.toString()}
-            </p>
-          )}
-        </div>
+    <form
+      noValidate
+      className="space-y-6 mt-10"
+      onSubmit={handleSubmit((data) => mutate(data))}
+    >
+      <div className="space-y-2">
+        <Label htmlFor="email">Email ID </Label>
+        <TextInput type="email" id="email" autoFocus {...register("email")} />
+        {errors.email && (
+          <p className="text-destructive text-sm">
+            {errors.email?.message?.toString()}
+          </p>
+        )}
+      </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="password">Password </Label>
-            <CustomLink
-              size={null}
-              padding={null}
-              variant={"link"}
-              href={"/auth/forgot-password"}
-            >
-              Forgot Password?
-            </CustomLink>
-          </div>
-          <PasswordInput id="password" {...register("password")} />
-          {errors.password && (
-            <p className="text-destructive text-sm">
-              {errors.password?.message?.toString()}
-            </p>
-          )}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="password">Password </Label>
+          <CustomLink
+            size={null}
+            padding={null}
+            variant={"link"}
+            href={"/auth/forgot-password"}
+          >
+            Forgot Password?
+          </CustomLink>
         </div>
+        <PasswordInput id="password" {...register("password")} />
+        {errors.password && (
+          <p className="text-destructive text-sm">
+            {errors.password?.message?.toString()}
+          </p>
+        )}
+      </div>
 
-        <div className="flex justify-center mt-4">
-          <Button type="submit" disabled={isPending} hover={'scale'}>
-            Sign In
-            {isPending && <ArrowRotate className="animate-spin" />}
-          </Button>
-        </div>
-      </form>
- 
+      <div className="flex justify-center mt-4">
+        <Button type="submit" disabled={isPending} hover={"scale"}>
+          Sign In
+          {isPending && <ArrowRotateIcon className="animate-spin" />}
+        </Button>
+      </div>
+    </form>
   );
 };
 

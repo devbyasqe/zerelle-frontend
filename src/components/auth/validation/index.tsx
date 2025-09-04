@@ -67,3 +67,11 @@ export const verifyOTPSchema = z.object({
 });
 
 export type TVerifyOTPFormData = z.infer<typeof verifyOTPSchema>;
+
+export const updateUsernameSchema = z.object({
+  username: z
+    .string()
+    .regex(USERNAME_REGEX, "Username can only contain letters and spaces"),
+});
+
+export type TUpdateUsernameFormData = z.infer<typeof updateUsernameSchema>;

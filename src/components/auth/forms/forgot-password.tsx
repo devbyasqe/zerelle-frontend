@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { authSubmit } from "@/components/backend/auth";
 import { toast } from "sonner";
-import { ArrowRotate } from "@/components/svg";
+import { ArrowRotateIcon } from "@/components/svg";
 
 const ForgotPasswordForm = () => {
   const router = useRouter();
@@ -55,7 +55,7 @@ const ForgotPasswordForm = () => {
       <div className="flex justify-center mt-4">
         <Button type="submit" disabled={isPending} hover={"scale"}>
           Send Reset Link
-          {isPending && <ArrowRotate className="animate-spin" />}
+          {isPending && <ArrowRotateIcon className="animate-spin" />}
         </Button>
       </div>
     </form>

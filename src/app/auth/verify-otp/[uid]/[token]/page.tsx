@@ -1,7 +1,7 @@
 "use client";
 import VerifyOtpForm from "@/components/auth/forms/verify-otp";
 import { authSubmit } from "@/components/backend/auth";
-import { useValidateUidToken } from "@/components/hooks/auth";
+import { useValidateUidToken } from "@/components/hooks";
 import { AuthLoader } from "@/components/loader/auth";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";

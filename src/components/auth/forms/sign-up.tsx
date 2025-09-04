@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TSignUpFormData, signUpSchema } from "../validation";
 import { useMutation } from "@tanstack/react-query";
 import { authSubmit } from "@/components/backend/auth";
-import { ArrowRotate } from "@/components/svg";
+import { ArrowRotateIcon } from "@/components/svg";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -82,7 +82,7 @@ const SignUpForm = () => {
       <div className="flex justify-center mt-4">
         <Button type="submit" disabled={isPending} hover={"scale"}>
           Sign Up
-          {isPending && <ArrowRotate className="animate-spin" />}
+          {isPending && <ArrowRotateIcon className="animate-spin" />}
         </Button>
       </div>
     </form>

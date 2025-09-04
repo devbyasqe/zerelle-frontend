@@ -8,17 +8,17 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   timeout: 5000,
-  headers: { "Content-Type": "application/json" },
 });
 
 const refreshAccessToken = async (refreshToken: string) => {
   try {
+    console.log("refreshing");
     const response = await axios.post(`${BASE_URL}/auth/token-refresh/`, {
       refresh: refreshToken,
     });
 
     setCookie("access", response.data.access);
-    setCookie("refresh", response.data.refresh);
+    setCookie("refresh", response.data.refresh, 7);
 
     return response.data.access;
   } catch {

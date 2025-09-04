@@ -3,7 +3,7 @@ import { Toaster as Sonner, ToasterProps } from "sonner";
 const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
-      visibleToasts={90}
+      visibleToasts={2}
       duration={5000}
       position="top-right"
       className="select-none top-14! right-[calc((100vw-clamp(20rem,95%,90rem))/2+1rem)]! left-auto!  "

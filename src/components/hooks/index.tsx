@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { authSubmit } from "../backend/auth";
 
 export const useValidateUidToken = (
@@ -25,4 +25,20 @@ export const useValidateUidToken = (
   }, []);
 
   return { loading };
+};
+
+export const useModalFor = () => {
+  const [modalFor, setModalFor] = useState<string | null>(null);
+
+  const openModalFor = useCallback((value: string) => {
+    setModalFor(value);
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  const closeModal = useCallback(() => {
+    document.body.style.overflow = "auto";
+    setModalFor(null);
+  }, []);
+
+  return { modalFor, openModalFor, closeModal };
 };

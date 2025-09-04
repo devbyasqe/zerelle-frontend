@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { authSubmit } from "@/components/backend/auth";
 import { setCookie } from "@/components/cookies";
-import { ArrowRotate } from "@/components/svg";
+import { ArrowRotateIcon } from "@/components/svg";
 import { toast } from "sonner";
 
 const VerifyOtpForm = ({ uid, token }: { uid: string; token: string }) => {
@@ -78,7 +78,7 @@ const VerifyOtpForm = ({ uid, token }: { uid: string; token: string }) => {
       <div className="flex justify-center mt-4">
         <Button type="submit" disabled={isPending} hover={"scale"}>
           Verify Code
-          {isPending && <ArrowRotate className="animate-spin" />}
+          {isPending && <ArrowRotateIcon className="animate-spin" />}
         </Button>
       </div>
     </form>
