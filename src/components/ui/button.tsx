@@ -49,6 +49,7 @@ export const Button = ({
 }: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) => {
   return (
     <button
+      type="button"
       data-slot="button"
       className={cn(
         buttonVariants({
